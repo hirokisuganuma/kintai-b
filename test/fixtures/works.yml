@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attendance_time: 2019-04-30 13:49:21
+  leaving_time: 2019-04-30 13:49:21
+  day: 2019-04-30
+  remarks: MyText
+  user: one
+
+two:
+  attendance_time: 2019-04-30 13:49:21
+  leaving_time: 2019-04-30 13:49:21
+  day: 2019-04-30
+  remarks: MyText
+  user: two
