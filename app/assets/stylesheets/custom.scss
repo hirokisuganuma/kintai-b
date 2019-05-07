@@ -5,6 +5,13 @@
 
 $gray-medium-light: #eaeaea;
 
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
 /* universal */
 
 body {
@@ -69,4 +76,26 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+/* table */
+
+table {
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;  
+}
+
+th {
+  vertical-align: middle;
+  text-align: center;  
+}
+
+/* form */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
 }
