@@ -14,8 +14,8 @@ class User < ApplicationRecord
 
   validates :affiliation,  presence: true, length: { maximum:  20 }
 
-  validates :basic_time,  presence: true
+  #validates :basic_time,  presence: true
 
-  validates :specified_time,  presence: true 
+  #validates :specified_time,  presence: true 
 
 end

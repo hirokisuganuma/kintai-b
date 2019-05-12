@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in @user
         flash[:success] = "新規登録が完了しました"
-        redirect_to user_url(current_user)
+        redirect_to user_url(@user)
       else
         render 'new'      
       end
@@ -24,6 +24,6 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :affiliation, :basic_time, :specified_time)
     end
 end
