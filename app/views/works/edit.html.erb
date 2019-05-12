@@ -1,0 +1,55 @@
+ <% provide(:title, @user.name) %>
+
+
+
+<h1><%= @user.name %>の勤怠情報編集</h1>
+
+
+　<div class="row">
+  
+  <%= render 'user_information'%>
+    
+      
+        
+  <table class="table-striped table-bordered">
+    <tr>
+      <th class="col-lg-2">日付</th>
+      <th class="col-lg-2">曜日</th>
+      <th class="col-lg-2">出社時間編集</th>
+      <th class="col-lg-2">退社時間編集</th>
+      <th class="col-lg-2">在社時間</th>
+      <th class="col-lg-2">備考</th>
+    </tr>
+  </table>
+  
+  <%= form_for(@user, url: edit_works_path, method: :post) do |f| %>
+     
+
+  <table class="table-striped table-bordered">
+    <% @works.each do |work| %>
+      <tr>
+        <td class="col-lg-2"><%= work.day.month %>月<%= work.day.day %>日</td>
+        <td class="col-lg-2"><%= %w(日 月 火 水 木 金 土 日)[work.day.wday] %></td>
+        <td class="col-lg-2">
+          <%= fields_for "works[]", work do |fi| %>
+          <%= fi.time_field :attendance_time, {class: 'form-control'} %>
+          <% end %>
+        </td>
+        <td class="col-lg-2">
+          <%= fields_for "works[]", work do |fi| %>
+          <%= fi.time_field :leaving_time, {class: 'form-control'}  %>
+          <% end %>
+        </td>
+        <td class="col-lg-2"><%= day_work_time(work) %></td>
+        <td class="col-lg-2"><%= work.remarks %></td>
+      </tr>
+    <%end%>
+  </table>
+  
+  <center>
+    <%= f.submit "編集内容で更新", style:"width:300px", class: "btn btn-primary" %>
+    <%= link_to "キャンセル", edit_work_path( @user, params:{first_day: @first_day }), style: "width:300px", class: "btn btncancel btn-default" %>
+  </center>
+  <% end %>
+  
+</div>

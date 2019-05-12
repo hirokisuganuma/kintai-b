@@ -94,16 +94,16 @@ class UserTest < ActiveSupport::TestCase
   end
 
 # basic_time
-  test "basic_time should be present" do
-    @user.basic_time = nil
-    assert_not @user.valid?
-  end
+#   test "basic_time should be present" do
+#     @user.basic_time = nil
+#     assert_not @user.valid?
+#   end
 
-# specified_time
-  test "specified_time should be present" do
-    @user.specified_time = nil
-    assert_not @user.valid?
-  end
+# # specified_time
+#   test "specified_time should be present" do
+#     @user.specified_time = nil
+#     assert_not @user.valid?
+#   end
   
 # user_id == user_id onrydestroy
   test "associated works shouldnbe destroyed" do
