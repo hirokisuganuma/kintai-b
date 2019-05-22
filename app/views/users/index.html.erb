@@ -1,19 +1,14 @@
-<% provide(:title, 'ユーザー一覧') %>
-<h3>ユーザー一覧</h3>
+<% provide(:title, '一覧') %>
+<h1>ユーザ一覧</h1>
 
 <%= will_paginate %>
 
-<%if current_user.try(:admin?)%>
-
 <ul class="users">
-  <%= render @users %>
+  <% @users.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
 </ul>
-<% else %>
-<ul class="users">
-  <%= render current_user %>
-</ul>
-
-<%end%>
-
 
 <%= will_paginate %>
