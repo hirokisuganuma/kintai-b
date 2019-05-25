@@ -1,7 +1,7 @@
 <% provide(:title, "勤怠編集" ) %>
 <div>
   <h1>勤怠編集画面</h1>
-  <%= form_for(@user, url: update_attendances_path, method: :patch) do |f| %>
+  <%= form_for(@user, url: update_works_path, method: :patch) do |f| %>
     <table class = "table-bordered table-striped table-condensed">
       <thead>
         <tr>
@@ -14,19 +14,19 @@
         </tr>
       </thead>
       <tbody>
-        <% @dates.each do |day| %>
-          <%= fields_for "attendances[]", day do |af| %>
+        <% @works.each do |work| %>
+          <%= fields_for "works[]", work do |af| %>
             <tr>
-              <td><%= day.worked_on.to_s(:date) %></td>
-              <td><%= %w{日 月 火 水 木 金 土}[day.worked_on.wday] %></td>
-              <td><%= af.time_field :started_at, class: "form-control" %></td>
-              <td><%= af.time_field :finished_at, class: "form-control" %></td>
+              <td><%= work.day.strftime("%-m/%d") %></td>
+              <td><%= %w{日 月 火 水 木 金 土}[work.day.wday] %></td>
+              <td><%= af.time_field :attendance_time, class: "form-control" %></td>
+              <td><%= af.time_field :leaving_time, class: "form-control" %></td>
               <td>
-                <% if day.started_at.present? && day.finished_at.present? %>
-                  <%= working_times(day.started_at, day.finished_at) %>
+                <% if work.attendance_time.present? && work.leaving_time.present? %>
+                  <%= working_times(work.attendance_time, work.leaving_time) %>
                 <% end %>
               </td>
-              <td><%= af.text_field :note, class: "form-control" %></td>
+              <td><%= af.text_field :remarks, class: "form-control" %></td>
             </tr>
           <% end %>
         <% end %>

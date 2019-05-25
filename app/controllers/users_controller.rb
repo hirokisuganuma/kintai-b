@@ -19,16 +19,16 @@ class UsersController < ApplicationController
     else
       @first_day = Date.parse(params[:first_day])
     end
-    @last_day = @first_day.end_of_month
-    (@first_day..@last_day).each do |day|
-      unless @user.works.any? {|work| work.day == day}
-        record = @user.works.build(day: day)
-        record.save
-      end
-      end
-    @works = @user.works.where(day: @first_day..@last_day)
+      @last_day = @first_day.end_of_month
+      
+      @works = @user.works.where(day: @first_day..@last_day)
+        unless  @user.works.find_by(day: @first_day)
+                @first_day.all_month.each do |day|
+                work = Work.new(day: day,user_id: @user.id)
+                work.save(validate: false)
+                end
+        end
     @worked_sum = @user.works.where.not(attendance_time: nil).count
-    
   end
 
   def new
@@ -100,7 +100,6 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
-    end
     end
 
     def admin_user

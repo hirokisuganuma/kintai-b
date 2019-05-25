@@ -16,4 +16,8 @@ Rails.application.routes.draw do
   end
   get    'users/:id/edit_basic_info',to:'users#edit_basic_info',as:'edit_basic_info'
   patch  'users/:id/update_basic_info' , to: 'users#update_basic_info',as:'update_basic_info'
+
+  #work_edit resource
+  get 'users/:id/works/:date/edit', to: 'works#edit', as: :edit_works
+  patch 'users/:id/works/:date/update', to: 'works#update', as: :update_works
 end
