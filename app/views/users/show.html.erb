@@ -45,7 +45,12 @@
       <% (@works).each do |work| %>
         <tr>
           <td><%= work.day.strftime("%-m/%d")%></td>
-          <td><%= %w{日 月 火 水 木 金 土}[work.day.wday] %></td>
+          <td><% %w{日 月 火 水 木 金 土}[work.day.wday] %>
+            <% if work.day.wday == 6 %><font color="BLUE">土</font>
+            <% elsif work.day.wday == 0 %><font color="RED">日</font>
+            <% else %> <%= %w{日 月 火 水 木 金 土}[work.day.wday] %>
+            <%end%>
+          </td>
           <td><%= work.attendance_time.strftime("%H") if work.attendance_time.present? %></td>
           <td><%= work.attendance_time.strftime("%M") if work.attendance_time.present? %></td>
           <td>
