@@ -14,6 +14,14 @@ class User < ApplicationRecord
 
   validates :affiliation,  presence: true, length: { maximum:  20 }
 
+  def self.search(search) 
+    if search
+      where(['name LIKE ?', "%#{search}%"]) 
+    else
+      all 
+    end
+  end
+
   #validates :basic_time,  presence: true
 
   #validates :specified_time,  presence: true 

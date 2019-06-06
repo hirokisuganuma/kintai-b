@@ -17,6 +17,7 @@ gem 'jbuilder',                '2.7.0'
 gem 'counter_culture', '~> 1.8'
 gem 'simple_form'
 gem 'rails-i18n'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
