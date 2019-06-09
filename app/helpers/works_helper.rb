@@ -7,7 +7,7 @@ module WorksHelper
       Time.now.day,
       Time.now.hour,
       Time.now.min, 0
-    )
+    ).round_to(15.minutes)
   end
 
   def working_times(started_at, finished_at)

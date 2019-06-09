@@ -18,7 +18,7 @@ gem 'counter_culture', '~> 1.8'
 gem 'simple_form'
 gem 'rails-i18n'
 gem 'therubyracer'
-
+gem 'rounding'
 group :development, :test do
   gem 'sqlite3', '1.3.13'
   gem 'byebug',  '9.0.6', platform: :mri
