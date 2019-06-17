@@ -12,10 +12,12 @@ class WorksController < ApplicationController
     @user = User.find(params[:user_id])
     @work = @user.works.find_by(day: Date.today)
     if @work.attendance_time.nil?
-      @work.update_attributes!(attendance_time: current_time)
+      @work.update_attributes(attendance_time: current_time)
+      @work.save(validate: false)
       flash[:info] = 'おはようございます。'
     elsif @work.leaving_time.nil?
-      @work.update_attributes!(leaving_time: current_time)
+      @work.update_attributes(leaving_time: current_time)
+      @work.save(validate: false)
       flash[:info] = 'おつかれさまでした。'
     else
       flash[:danger] = 'トラブルがあり、登録出来ませんでした。'
