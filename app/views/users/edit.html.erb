@@ -11,11 +11,14 @@
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
+      
+      <%= f.label :affiliation %>
+      <%= f.text_field :affiliation, class: 'form-control' %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.label :password_confirmation, "パスワード再確認" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "更新する", class: "btn btn-primary" %>
