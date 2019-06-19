@@ -4,10 +4,11 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: [:destroy, :edit_basic_info, :update_basic_info]
 
   def index
+    @user = User.find(1)
     @users = User.paginate(page: params[:page]).search(params[:search])
       if current_user.admin?
       else
-        redirect_to(root_url) 
+        redirect_to(top_url) 
         flash[:warning] = "ほかのユーザにはアクセスできません"
       end
   end
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     end
       @last_day = @first_day.end_of_month
       
-      @works = @user.works.where(day: @first_day..@last_day)
+      @works = @user.works.where.(day: @first_day..@last_day)
         unless  @user.works.find_by(day: @first_day)
                 @first_day.all_month.each do |day|
                 work = Work.new(day: day,user_id: @user.id)
@@ -62,11 +63,6 @@ class UsersController < ApplicationController
 
   def edit_basic_info
     @user = User.find(params[:id])
-      if @user.admin?
-      else
-        redirect_to(root_url) 
-        flash[:warning] = "ほかのユーザにはアクセスできません"
-      end
   end
 
   def update_basic_info
@@ -99,11 +95,11 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(top_url) unless current_user?(@user)
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user.admin?
+      redirect_to(top_url) unless current_user.admin?
     end
     
-  end
+end

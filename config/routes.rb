@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  #root
   root 'application#top'
-
+  get  '/top/:id',   to: 'application#top',as: :top
   #session resource
   get  '/signup',   to: 'users#new'
+  get  '/index/:id',   to: 'users#index', as: :user_index
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
