@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     end
       @last_day = @first_day.end_of_month
       
-      @works = @user.works.where.(day: @first_day..@last_day)
+      @works = @user.works.where(day: @first_day..@last_day)
         unless  @user.works.find_by(day: @first_day)
                 @first_day.all_month.each do |day|
                 work = Work.new(day: day,user_id: @user.id)
