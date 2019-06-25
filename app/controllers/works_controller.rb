@@ -35,6 +35,8 @@ class WorksController < ApplicationController
             flash[:warning] = '一部編集が無効となった項目があります。'
           elsif time["attendance_time"].to_s > time["leaving_time"].to_s
             flash[:warning] = '出社時間より退社時間が早い項目がありました'
+          elsif time["attendance_time"] !~ /\d{2}:00|15|30|45/ then flash[:warning] = '入力は１５分間隔でお願いします。'
+          elsif time["leaving_time"] !~ /\d{2}:00|15|30|45/ then flash[:warning] = '入力は１５分間隔でお願いします。'
           else
                 work.update_attributes(time)
                   flash[:success] = '勤怠時間を更新しました。なお本日以降の更新はできません。'

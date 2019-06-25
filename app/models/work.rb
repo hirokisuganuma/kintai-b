@@ -3,6 +3,12 @@ class Work < ApplicationRecord
   validates :day,  presence: true
   validate :leaving_time_should_existence_attendance_time
   validate :leaving_time_should_early_attendance_time
+  
+ def leaving_time_should_existence_attendance_timea
+    if attendance_time == leaving_time
+    errors.add(:attendance_time, ": 00が存在しています。")
+    end
+ end
 
   def leaving_time_should_existence_attendance_time
     if attendance_time.nil?
