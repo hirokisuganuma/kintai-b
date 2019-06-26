@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page]).search(params[:search])
       if current_user.admin?
       else
-        redirect_to(top_url) 
+        redirect_to(root_path) 
         flash[:warning] = "ほかのユーザにはアクセスできません"
       end
   end

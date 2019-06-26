@@ -42,7 +42,7 @@ class WorksController < ApplicationController
                   flash[:success] = '勤怠時間を更新しました。なお本日以降の更新はできません。'
           end
       end 
-    redirect_to edit_works_path(@user, params:{ id: @user.id, first_day: params[:first_day]})
+  redirect_to user_url(@user, params:{first_day: params[:date]})
   end
 
   private
