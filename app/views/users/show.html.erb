@@ -68,7 +68,7 @@
           <td>
             <% if work.attendance_time.present? && work.leaving_time.present? %>
               <%= working_times(work.attendance_time, work.leaving_time) %>
-              <% seconds = (work.attendance_time - work.leaving_time).to_i %>
+              <% seconds = (work.leaving_time - work.attendance_time).to_i %>
               <% @total_seconds = @total_seconds.to_i + seconds %>
             <% end %>
           </td>

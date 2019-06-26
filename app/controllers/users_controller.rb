@@ -15,15 +15,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+     if    current_user.admin? 
+     elsif current_user != User.find(params[:id]) 
+           redirect_to(root_url) 
+           flash[:warning] = "ほかのユーザにはアクセスできません"
+     end
     if params[:first_day].nil?
       @first_day = Date.today.beginning_of_month
     else
       @first_day = Date.parse(params[:first_day])
     end
       @last_day = @first_day.end_of_month
-      
       @works = @user.works.where('day >= ? and day <= ?', @first_day, @last_day).order('day')
-
         unless  @user.works.find_by(day: @first_day)
                 @first_day.all_month.each do |day|
                 work = Work.new(day: day,user_id: @user.id)
